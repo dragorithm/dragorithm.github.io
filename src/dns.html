@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang='zh'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>DNS 服务器列表</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        table {
+            width: 60%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>DNS 服务器列表</h1>
+    <p>点击表格中的文本即可复制</p>
+    <table>
+        <tr>
+            <th>IPv4 地址</th>
+            <th>IPv6 地址</th>
+            <th>DoH 地址</th>
+        </tr>
+        <tr>
+            <td onclick='copyText(this)'>223.6.6.6</td>
+            <td onclick='copyText(this)'>2400:3200:baba::1</td>
+            <td onclick='copyText(this)'>https://223.6.6.6/dns-query</td>
+        </tr>
+        <tr>
+            <td onclick='copyText(this)'>1.1.1.1</td>
+            <td onclick='copyText(this)'>2606:4700:4700::1111</td>
+            <td onclick='copyText(this)'>https://1.1.1.1/dns-query</td>
+        </tr>
+    </table>
+
+    <button class='floating-button' onclick='goHome()'>返回首页</button>
+
+    <script>
+        function copyText(element) {
+            navigator.clipboard.writeText(element.innerText).then(() => {
+                alert('已复制: ' + element.innerText)
+            }).catch(err => {
+                console.error('复制失败', err)
+            })
+        }
+
+        function goHome() {
+            window.location.href = '/'
+        }
+    </script>
+</body>
+
+</html>

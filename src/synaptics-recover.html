@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang='zh'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>synaptics-recover</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .command-box { background: #f4f4f4; padding: 10px; margin: 10px auto; width: 80%; border-radius: 5px; cursor: pointer; }
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <h1>synaptics-recover</h1>
+    <p>点击命令即可复制</p>
+
+    <h2>恢复单个文件</h2>
+    <div class='command-box' onclick='copyText(this)'>synaptics-recover infected.exe recovered.exe</div>
+    <div class='command-box' onclick='copyText(this)'>synaptics-recover infected.xlsm recovered.xlsx</div>
+    
+    <h2>从内存、文件系统和注册表中清除病毒(需要管理员权限)</h2>
+    <div class='command-box' onclick='copyText(this)'>synaptics-recover -k</div>
+
+    <h2>递归扫描目录，恢复感染的可执行文件(推荐使用管理员权限)</h2>
+    <div class='command-box' onclick='copyText(this)'>synaptics-recover C:\</div>
+
+    <button class='floating-button' onclick='goHome()'>返回首页</button>
+
+    <div id='toast' class='toast'>已复制到剪贴板</div>
+
+    <script>
+        function copyText(element) {
+            navigator.clipboard.writeText(element.innerText).then(() => {
+                showToast();
+            }).catch(err => {
+                console.error('复制失败', err);
+            });
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => {
+                    toast.style.display = 'none';
+                }, 500);
+            }, 2000);
+        }
+
+        function goHome() {
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html>
