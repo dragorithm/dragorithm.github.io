@@ -1,25 +1,76 @@
 <!DOCTYPE html>
-<html lang='zh'>
+<html lang="zh">
+
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>synaptics-recover</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synaptics Recover</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        .command-box { background: #f4f4f4; padding: 10px; margin: 10px auto; width: 80%; border-radius: 5px; cursor: pointer; }
-        .floating-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .command-box {
+            background: #e9ecef;
+            padding: 12px;
+            margin: 12px 0;
+            width: 96%;
+            border: 2px solid #007bff;
             cursor: pointer;
             font-size: 16px;
-            border: none;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            transition: background 0.3s;
         }
+
+        .command-box:hover {
+            background: #d6d8db;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 12px 18px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s;
+            text-align: center;
+            flex: 1;
+            margin: 5px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
         .toast {
             position: fixed;
             bottom: 20px;
@@ -28,30 +79,35 @@
             background: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 0;
             display: none;
             opacity: 0;
             transition: opacity 0.5s;
         }
     </style>
 </head>
+
 <body>
-    <h1>synaptics-recover</h1>
-    <p>点击命令即可复制</p>
+    <div class="container">
+        <h1>Synaptics Recover</h1>
+        <p>点击命令即可复制</p>
 
-    <h2>恢复单个文件</h2>
-    <div class='command-box' onclick='copyText(this)'>synaptics-recover infected.exe recovered.exe</div>
-    <div class='command-box' onclick='copyText(this)'>synaptics-recover infected.xlsm recovered.xlsx</div>
-    
-    <h2>从内存、文件系统和注册表中清除病毒(需要管理员权限)</h2>
-    <div class='command-box' onclick='copyText(this)'>synaptics-recover -k</div>
+        <h2>恢复单个文件</h2>
+        <div class="command-box" onclick="copyText(this)">synaptics-recover infected.exe recovered.exe</div>
+        <div class="command-box" onclick="copyText(this)">synaptics-recover infected.xlsm recovered.xlsx</div>
 
-    <h2>递归扫描目录，恢复感染的可执行文件(推荐使用管理员权限)</h2>
-    <div class='command-box' onclick='copyText(this)'>synaptics-recover C:\</div>
+        <h2>清除病毒(需要管理员权限)</h2>
+        <div class="command-box" onclick="copyText(this)">synaptics-recover -k</div>
 
-    <button class='floating-button' onclick='goHome()'>返回首页</button>
+        <h2>扫描整个系统(推荐使用管理员权限)</h2>
+        <div class="command-box" onclick="copyText(this)">synaptics-recover C:\</div>
 
-    <div id='toast' class='toast'>已复制到剪贴板</div>
+        <div class="button-container">
+            <button class="button" onclick="goHome()">返回首页</button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">已复制到剪贴板</div>
 
     <script>
         function copyText(element) {
@@ -79,4 +135,5 @@
         }
     </script>
 </body>
+
 </html>

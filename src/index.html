@@ -7,34 +7,70 @@
     <title>学习主页</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
         }
 
-        ul {
-            list-style: none;
-            padding: 0;
+        h1 {
+            color: #333;
         }
 
-        li {
-            margin: 10px 0;
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .link-box {
+            display: block;
+            margin: 15px auto;
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+
+        .link-box:hover {
+            background-color: #0056b3;
+        }
+
+        /* 浮动按钮样式 */
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #28a745;
+            color: white;
+            padding: 12px 18px;
+            text-decoration: none;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s;
+        }
+
+        .floating-button:hover {
+            background-color: #218838;
         }
     </style>
 </head>
 
 <body>
-    <a href='./dns.html'>
-        <h1>查看DNS</h1>
-    </a>
-    <a href='./synaptics-recover.html'>
-        <h1>synaptics-recover使用方法</h1>
-    </a>
-    <h1>文件分享</h1>
-    <p>点击文件名称下载：</p>
-    <ul>
-        <li><a href='./file/JiYuTrainer.exe' download>JiYuTrainer</a></li>
-        <li><a href='./file/synaptics-recover.exe' download>synaptics-recover</a></li>
-    </ul>
+    <div class="container">
+        <h1>学习主页</h1>
+        <a href='./dns.html' class="link-box">查看DNS</a>
+        <a href='./synaptics-recover.html' class="link-box">synaptics-recover使用方法</a>
+        <a href="./file.html" class="link-box">文件分享</a>
+    </div>
+
+    <!-- 浮动项目开源地址按钮 -->
+    <a href='https://github.com/dragorithm/study/' class='floating-button' target='_blank'>项目开源地址</a>
+
 </body>
 
 </html>
